@@ -2,22 +2,24 @@
 ## Up & Going
 ## _Chapter 1: Into Programming + Chapter 2: Into Javascript_
 
-### Statements
-**Statement** is a group of words, numbers, and operators that performs a specific task. 
+## Statements
+###  Statement
+
+is a group of words, numbers, and operators that performs a specific task. 
 
 `a = b * 2` 
 
-**Variables**
+### Variables
 Variables hold values 
 
 `a` and `b`
 
-**Operators**
+### Operators
 Perform actions with the values and variables (such as assignment and mathematic multiplication).
 
 `=` and `*`
 
-### Expressions 
+## Expressions 
 Statements are made up of one or more expressions. An **expression** is any reference to a variable or value, or a set of variable(s) and value(s) combined with operators.
 
 For example:
@@ -30,10 +32,11 @@ This statement has four expressions in it:
 - `b * 2` is an arithmetic expression, which means to do the multiplication
 - `a = b * 2` is an assignment expression, which means to assign the result of the b * 2 expression to the variable a (more on assignments later)
 
-**Call expression**
+### Call expression
+
 `alert( a );` 
 
-**Const**
+### Const
 
 In the newest version of JavaScript, a new way to declare constants, by using `const` instead of `var`.
 
@@ -41,7 +44,7 @@ In the newest version of JavaScript, a new way to declare constants, by using `c
 
 Constants are useful just like variables with unchanged values, except that constants also prevent accidentally changing value somewhere else after the initial setting.
 
-### Conditionals
+## Conditionals
 
 `if..else` statement.
 
@@ -62,7 +65,7 @@ else {
 	// fallback to here
 }
 ```
-**Conditional operator**
+### Conditional operator
 
 A more concise form of a single `if..else` statement
 
@@ -73,8 +76,8 @@ var b = (a > 41) ? "hello" : "world";
 
 If the test expression (`a > 41` here) evaluates as `true`, the first clause `("hello")` results, otherwise the second clause `("world")` results, and whatever the result is then gets assigned to `b`.
 
-### Loops
-**`while` loop**
+## Loops
+### `while` loop
 
 ```
 while (numOfCustomers > 0) {
@@ -86,7 +89,7 @@ while (numOfCustomers > 0) {
 }
 ```
 
-**`do..while` loop**
+### `do..while` loop**
 
 ```
 do {
@@ -97,7 +100,7 @@ do {
 	numOfCustomers = numOfCustomers - 1;
 } while (numOfCustomers > 0);
 ```
-**`for` loop** 
+### `for` loop** 
 The `for` loop has three clauses: 
 - the initialization clause (`var i=0`)
 - the conditional test clause (`i <= 9`)
@@ -110,7 +113,7 @@ for (var i = 0; i <= 9; i = i + 1) {
 }
 ```
 
-### Functions
+## Functions
 
 A function is generally a named section of code that can be "called" by name, and the code inside it will be run each time
 
@@ -140,7 +143,7 @@ amount = calculateFinalPurchaseAmount( amount );
 console.log( amount.toFixed( 2 ) );		// "107.99"
 ```
 
-**Scope** 
+### Scope 
 
 In JS every function gets it's own scope. Scope is basically al collection of variables as well as the rules for how those variables are accessed by name. Only code inside that function can access that function's _scoped_ values. 
 
@@ -168,7 +171,7 @@ outer();
 
 So, code inside the `inner()` function has access to both variables `a` and `b`, but code in `outer()` has access only to `a` -- it cannot access `b` because that variable is only inside `inner()`.
 
-### Functions As Values
+## Functions As Values
 
 Though it may not seem obvious from that syntax, `foo` is basically just a variable in the outer enclosing scope that's given a reference to the function being declared. That is, the `function` itself is a value, just like `42` or `[1,2,3]` would be.
 
@@ -178,7 +181,7 @@ function foo() {
 }
 ```
 
-**Immediately Invoked Function Expressions (IIFEs)**
+### Immediately Invoked Function Expressions (IIFEs)
 
 There's another way to execute a function expression, which is typically referred to as an _immediately invoked function expression_ (IIFE):
 
@@ -191,7 +194,7 @@ There's another way to execute a function expression, which is typically referre
 
 Because an IIFE is just a function, and functions create variable scope, using an IIFE in this fashion is often used to declare variables that won't affect the surrounding code outside the IIFE.
 
-**Closure** 
+### Closure 
 You can think of closure as a way to "remember" and continue to access a function's scope (its variables) even once the function has finished running.
 
 - **Modules**
@@ -200,7 +203,7 @@ Modules let you define private implementation details (variables, functions) tha
 
 More detailed explanation about Closure and Modules [here](https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/ch2.md#closure).
 
-### This Identifier
+## This Identifier
 
 If a function has a `this` reference inside it, that `this` reference usually points to an `object`. But which `object` it points to depends on how the function was called.
 
@@ -238,7 +241,7 @@ There are four rules for how this gets set, and they're shown in those last four
 4. `new foo()` sets `this` to a brand new empty object.
 
 
-### Objects
+## Objects
 
 The `object` type refers to a compound value where you can set properties (named locations) that each hold their own values of any type.
 
@@ -259,7 +262,7 @@ obj["c"];	// true
 
 ```
 
-**Arrays**
+### Arrays
 
 An array is an `object` that holds values of any type not particularly in named properties/keys, but rather in numerically indexed positions. 
 
@@ -277,7 +280,7 @@ arr.length;		// 3
 
 typeof arr;		// "object"
 ```
-### Coercion
+## Coercion
 
 Coercion comes in two forms in JavaScript: _explicit_ and _implicit_.
 
@@ -297,16 +300,16 @@ var b = a * 1;	// "42" implicitly coerced to 42 here
 
 ```
 
-### Equality 
+## Equality 
 
-**Equality**
+### Equality
 
 - `=` equals 
 - `==` checks for value equality with coercion allowed
 - `===` checks for value equality without allowing coercion
 - `!==` not equal
 
-**Inequality**
+### Inequality
 
 The `<`, `>`, `<=`, and `>=` operators are used for inequality.
 
@@ -322,7 +325,7 @@ Strict mode makes several changes to normal JavaScript semantics :
 [Bron: Strict mode - Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
 
 
-### Prototype 
+## Prototype 
 
 When you reference a property on an object, if that property doesn't exist, JavaScript will automatically use that object's internal prototype reference to find another object to look for the property on. You could think of this almost as a fallback if the property is missing.
 
@@ -343,15 +346,15 @@ bar.a;		// 42 <-- delegated to `foo`
 Visualize `foo` and `bar` objects and their relationship: 
 ![alt text](https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/fig6.png)
 
-### Polyfilling and Transpiling 
+## Polyfilling and Transpiling 
 
 Some of the JS features we've already covered, and certainly many of the features covered in the rest of this series, are newer additions and will not necessarily be available in older browsers.
 
-**Polyfilling**
+### Polyfilling
 
 The word "polyfill" is an invented term (by Remy Sharp) (https://remysharp.com/2010/10/08/what-is-a-polyfill) used to refer to taking the definition of a newer feature and producing a piece of code that's equivalent to the behavior, but is able to run in older JS environments.
 
-**Transpiling**
+### Transpiling
 
 The better option is to use a tool that converts your newer code into older code equivalents. This process is commonly called "transpiling," a term for transforming + compiling.
 
