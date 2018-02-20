@@ -27,6 +27,12 @@ The "characters" that interact to process the program `var a = 2`.
 2. **Compiler**: one of _Engine's_ friends: handles all the dirty work of parsing and code-generation. 
 3. **Scope**: another friend of _Engine_; collects and maintains a look-up list of all the declared identifiers (variables), and enforces a strict set of rules as to how these are accessible to currently executing code.
 
+**Nested Scope**
+Just as a block or function is nested inside another block or function, scopes are nested inside other scopes.
+So, if a variable cannot be found in the immediate scope, _Engine_ consults the next outer containing scope, continuing until found or until the outermost (aka, global) scope has been reached.
+
+The simple rules for traversing nested Scope: Engine starts at the currently executing Scope, looks for the variable there, then if not found, keeps going up one level, and so on. If the outermost global scope is reached, the search stops, whether it finds the variable or not.
+
 ### Back & Forth
 
 Statement:
@@ -51,8 +57,23 @@ If _Engine_ eventually finds a variable, it assigns the value `2` to it. If not,
 To summarize: two distinct actions are taken for a variable assignment: 
 First, Compiler declares a variable (if not previously declared in the current scope), and second, when executing, Engine looks up the variable in Scope and assigns to it, if found.
 
-  
-  
-  
+**Compiler Speak**
+
+When _Engine_ executes the code that _Compiler_ produced step (2), it has to look-up the variable `a` to see if it has been declared, and this look-up is consulting _Scope_. 
+
+In this case 
+
+`var a = 2` 
+
+_Engine_ would be performing an Left-hand Side (LHS) look-up for the variable `a`. The other type look-up is called Right-hand Side (RHS).(Side of an assignment operation. )
+
+LHS = when a variable appears on the left-hand side of an assignement operation
+RHS = when a variable appears on the right-hand of an assignent operation 
+
+Ask yourself: _"who's the target of the assignment (LHS)"_ and _"who's the source of the assignment (RHS)"._
+
+Why does it matter whether we call it LHS or RHS? Because these two types of look-ups behave differently in the circumstance where the variable has not yet been declared (is not found in any consulted Scope).
+ 
+
   
   
