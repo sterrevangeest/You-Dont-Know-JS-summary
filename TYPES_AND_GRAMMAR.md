@@ -152,6 +152,49 @@ a; // [ undefined, undefined, undefined ]
 ```
 (Detailed expl. in book)
 
+**Regular expressions**
+`RegExp(..)` has some reasonable utility: to dynamically define the pattern for a regular expression. 
+
+```
+var name = "Kyle";
+var namePattern = new RegExp( "\\b(?:" + name + ")+\\b", "ig" );
+
+var matches = someText.match( namePattern );
+```
+This kind of scenario legitimately occurs in JS programs from time to time, so you'd need to use the new RegExp("pattern","flags") form.
+
+### Date(..) and Error(..)
+The `Date(..)` and `Error(..)` native constructors are much more useful than the other natives, because there is no literal form for either.
+
+- To create a date object value, you must use `new Date()`. The `Date(..)` constructor accepts optional arguments to specify the date/time to use, but if omitted, the current date/time is assumed. By far the most common reason you construct a date object is to get the current timestamp value (a signed integer number of milliseconds since Jan 1, 1970). You can do this by calling `getTime()` (or `Date.now()`)on a date object instance.
+
+```
+if (!Date.now) {
+	Date.now = function(){
+		return (new Date()).getTime();
+	};
+}
+```
+
+- The `Error(..)` constructor behaves the same with the `new` keyword present or omitted. The main reason you'd want to create an error object is that it captures the current execution stack context into the object (in most JS engines, revealed as a read-only `.stack` property once constructed). This stack context includes the function call-stack and the line-number where the error object was created, which makes debugging that error much easier. You would typically use such an error object with the `throw` operator:
+ 
+ ```
+function foo(x) {
+	if (!x) {
+		throw new Error( "x wasn't provided" );
+	}
+	// ..
+}
+```
+ ### Symbols 
+ 
+New in ES6. 
+Symbols are special "unique" (not strictly guaranteed!) values that can be used as properties on objects with little fear of any collision.
+
+
+
+
+
 
 
 
