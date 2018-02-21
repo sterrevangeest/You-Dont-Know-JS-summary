@@ -73,7 +73,12 @@ RHS = when a variable appears on the right-hand of an assignent operation
 Ask yourself: _"who's the target of the assignment (LHS)"_ and _"who's the source of the assignment (RHS)"._
 
 Why does it matter whether we call it LHS or RHS? Because these two types of look-ups behave differently in the circumstance where the variable has not yet been declared (is not found in any consulted Scope).
- 
+
+- If an RHS look-up fails to ever find a variable, anywhere in the nested Scopes, this results in a ReferenceError being thrown by the Engine. It's important to note that the error is of the type ReferenceError.
+
+- If the Engine is performing an LHS look-up and arrives at the top floor (global Scope) without finding it, and if the program is not running in "Strict Mode" [^note-strictmode], then the global Scope will create a new variable of that name in the global scope, and hand it back to Engine. "Strict Mode" [^note-strictmode], which was added in ES5, has a number of different behaviors from normal/relaxed/lazy mode. One such behavior is that it disallows the automatic/implicit global variable creation. In that case, there would be no global Scope'd variable to hand back from an LHS look-up, and Engine would throw a ReferenceError similarly to the RHS case.
+
+
 
   
   
