@@ -52,12 +52,23 @@ JavaScript has just one numeric type: `number`.
 
 - Very large or very small numbers will be default outputted in exponent form, the same as the output of the `toExponential();` method. 
 - `toFixed();` method allows you to specify many fractional decimal places you'd like the value to be represented with. 
-```
-var a = 42.59;
+  ```
+  var a = 42.59;
 
-a.toFixed( 0 ); // "43"
-a.toFixed( 1 ); // "42.6"
-```
+  a.toFixed( 0 ); // "43"
+  a.toFixed( 1 ); // "42.6"
+  ```
+  Notice that the output is actually a string representation of the number, and that the value is 0-padded on the right-hand   side if you ask for more decimals than the value holds.
+- `toPrecision();` specifies how many significant digits should be used to represent the value:
+  ```
+  var a = 42.59;
+
+  a.toPrecision( 1 ); // "4e+1"
+  a.toPrecision( 2 ); // "43"
+  a.toPrecision( 3 ); // "42.6"
+  ```
+
+
 
 
 
