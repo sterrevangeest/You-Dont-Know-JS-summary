@@ -133,6 +133,8 @@ c.valueOf(); // true
 
 **Array**
 
+Notice:
+
 ```
 var a = new Array( 4 );                         
 var b = [ undefined, undefined, undefined ];
@@ -143,6 +145,15 @@ a;    //length 4
 b;    //length 3
 c;    //length 5
 ```
+So, if you wanted to actually create an array of actual undefined values (not just "empty slots"), how could you do it (besides manually)?:
+```
+var a = Array.apply( null, { length: 3 } );
+a; // [ undefined, undefined, undefined ]
+```
+(Detailed expl. in book)
+
+
+
 
 
 
