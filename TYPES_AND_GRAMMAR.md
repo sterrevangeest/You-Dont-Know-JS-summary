@@ -71,10 +71,78 @@ JavaScript has just one numeric type: `number`.
   a.toPrecision( 3 ); // "42.6"
   ```
 
+- With `Number.EPSILON` you can compare two `number`s for "equality" within the rounding error tolerance. 
+
+- Test if a value is an integer (you have to polyfill for pre-ES6) : `Number.isInteger(..)`
+
+- Test if a value is a safe integer (you have to polyfill for pre-ES6): 
+  Max: 9007199254740991 (`Number.MAX_VALUE`) / ES6 (`Number.MAX_SAFE_INTEGER`)
+  Min: -9007199254740991 (`Number.MIN_VALUE`) / ES6 (`Number.MIN_SAFE_INTEGER`)
+  
+- The expression `void ___` "voids" out any value, so that the result of the expression is always the `undefined` value. It   doesn't modify the existing value; it just ensures that no value comes back from the operator expression.
+
+## Chapter 3: Natives
+Several times in Chapters 1 and 2, we alluded to various built-ins, usually called "natives".
+Here's a list of the most commonly used natives:
+
+* `String()`
+* `Number()`
+* `Boolean()`
+* `Array()`
+* `Object()`
+* `Function()`
+* `RegExp()`
+* `Date()`
+* `Error()`
+* `Symbol()` -- added in ES6!
+
+As you can see, these natives are actually built-in functions.
+
+### Internal `[[Class]]`
+
+Values that are `typeof` `"object"` (such as an array) are additionally tagged with an internal `[[Class]]` property (think of this more as an internal classification rather than related to classes from traditional class-oriented coding). This property cannot be accessed directly, but can generally be revealed indirectly by borrowing the default `Object.prototype.toString(..)` method called against the value.
+
+```
+Object.prototype.toString.call( [1,2,3] );			// "[object Array]"
+
+Object.prototype.toString.call( /regex-literal/i );	// "[object RegExp]"
+```
+
+### Boxing Wrappers 
+
+These object wrappers serve a very important purpose. Primitive values don't have properties or methods, so to access `.length` or `.toString()` you need an object wrapper around the value. Thankfully, JS will automatically box (aka wrap) the primitive value to fulfill such accesses.
+
+It might seem to make sense to just have the object form of the value from the start, so the JS engine doesn't need to implicitly create it for you. But it turns out that's a bad idea. Browsers long ago performance-optimized the common cases like `.length`, which means your program will actually go slower if you try to "preoptimize" by directly using the object form (which isn't on the optimized path).
+
+**Unboxing**
+
+If you have an object wrapper and you want to get the underlying primitive value out, you can use the `valueOf()` method:
+
+```
+var a = new String( "abc" );
+var b = new Number( 42 );
+var c = new Boolean( true );
+
+a.valueOf(); // "abc"
+b.valueOf(); // 42
+c.valueOf(); // true
+```
 
 
+### Natives as Constructors 
 
+**Array**
 
+```
+var a = new Array( 4 );                         
+var b = [ undefined, undefined, undefined ];
+var c = [];
+c.length = 5;
+
+a;    //length 4
+b;    //length 3
+c;    //length 5
+```
 
 
 
