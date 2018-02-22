@@ -191,6 +191,34 @@ function foo(x) {
 New in ES6. 
 Symbols are special "unique" (not strictly guaranteed!) values that can be used as properties on objects with little fear of any collision.
 
+### Natice prototypes 
+
+Each of the built-in native constructors has its own `.prototype` object -- `Array.prototype`, `String.prototype`, etc. These objects contain behavior unique to their particular object subtype.
+
+Note: By documentation convention, `String.prototype.XYZ` is shortened to `String#XYZ`, and likewise for all the other `.prototype`s. 
+
+- String#indexOf(..): find the position in the string of another substring
+- String#charAt(..): access the character at a position in the string
+- String#substr(..), String#substring(..), and String#slice(..): extract a portion of the string as a new string
+- String#toUpperCase() and String#toLowerCase(): create a new string that's converted to either uppercase or lowercase
+- String#trim(): create a new string that's stripped of any trailing or leading whitespace
+
+None of the methods modify the string in place. Modifications (like case conversion or trimming) create a new value from the existing value.
+
+## Chapter 4: Coercion
+
+Some say: - coercion is magical, evil, confusing, and just downright a bad idea.
+
+Converting a value from one type to another is often called "type casting," when done explicitly, and "coercion" when done implicitly (forced by the rules of how a value is used).
+
+**"implicit coercion" vs. "explicit coercion."**
+
+**"explicit coercion"** is when it is **obvious** from looking at the code that a type conversion is intentionally occurring, whereas **"implicit coercion"** is when the type conversion will occur as a **less obvious side effect** of some other intentional operation. 
+
+
+
+
+
 
 
 
