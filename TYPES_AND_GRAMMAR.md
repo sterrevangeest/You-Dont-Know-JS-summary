@@ -1,4 +1,6 @@
 # You Don't Know JS: Types & Grammar
+
+
 ## Chapter 1: Types
 
 ### Built-in Types 
