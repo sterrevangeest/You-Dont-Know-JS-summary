@@ -28,6 +28,7 @@ The "characters" that interact to process the program `var a = 2`.
 3. **Scope**: another friend of _Engine_; collects and maintains a look-up list of all the declared identifiers (variables), and enforces a strict set of rules as to how these are accessible to currently executing code.
 
 **Nested Scope**
+
 Just as a block or function is nested inside another block or function, scopes are nested inside other scopes.
 So, if a variable cannot be found in the immediate scope, _Engine_ consults the next outer containing scope, continuing until found or until the outermost (aka, global) scope has been reached.
 
@@ -78,9 +79,30 @@ Why does it matter whether we call it LHS or RHS? Because these two types of loo
 
 - If the Engine is performing an LHS look-up and arrives at the top floor (global Scope) without finding it, and if the program is not running in "Strict Mode" [^note-strictmode], then the global Scope will create a new variable of that name in the global scope, and hand it back to Engine. "Strict Mode" [^note-strictmode], which was added in ES5, has a number of different behaviors from normal/relaxed/lazy mode. One such behavior is that it disallows the automatic/implicit global variable creation. In that case, there would be no global Scope'd variable to hand back from an LHS look-up, and Engine would throw a ReferenceError similarly to the RHS case.
 
+## Chapter 2: Lexical Scope
+
+There are two predominant models for how scope works:
+
+1. Lexical Scope, by far the most common, used by vast majority of programming languages. 
+2. Dynamic Scope
+
+### Lex-time
+
+The first traditional phase of a standard language compiler is called **lexing**.  
+
+Lexical scope is scope that is defined at lexing time. In other words, lexical scope is based on where variables and blocks of scope are authored, by you, at write time, and thus is (mostly) set in stone by the time the lexer processes your code.
+
+### Look-ups
+
+**Scope look-up stops once it finds the first match.** The same identifier name can be specified at multiple layers of nested scope, which is called "shadowing" (the inner identifier "shadows" the outer identifier). Regardless of shadowing, scope look-up always starts at the innermost scope being executed at the time, and works its way outward/upward until the first match, and stops.
+
+`window.a`  --> Global variables are also automatically properties of the global object (`window` in browsers, etc.), so it is possible to reference a global variable not directly by its lexical name, but instead indirectly as a property reference of the global object. This technique gives access to a global variable which would otherwise be inaccessible due to it being shadowed. However, non-global shadowed variables cannot be accessed.
 
 
 
 
-  
+
+
+
+
   
