@@ -188,7 +188,7 @@ function foo(x) {
 	// ..
 }
 ```
- ### Symbols 
+### Symbols 
  
 New in ES6. 
 Symbols are special "unique" (not strictly guaranteed!) values that can be used as properties on objects with little fear of any collision.
@@ -216,6 +216,33 @@ Converting a value from one type to another is often called "type casting," when
 **"implicit coercion" vs. "explicit coercion."**
 
 **"explicit coercion"** is when it is **obvious** from looking at the code that a type conversion is intentionally occurring, whereas **"implicit coercion"** is when the type conversion will occur as a **less obvious side effect** of some other intentional operation. 
+
+## Chapter 5: Coercion
+
+The grammar for JavaScript is a structured way to describe how the syntax (operators, keywords, etc.) fits together into well-formed, valid programs.
+
+### Statements & Expressions 
+
+There's a difference between statements and expressions: 
+- statements are like sentences 
+- expressions are like phrases (expressions are part of statements) 
+
+**Statement Completion Values**
+
+~~All statements have completion values (even if that value is `undefined`). 
+
+~~`undefined` is reported after many different statements. ~~
+
+~~**Why** would you want to capture the completion task? ~~
+
+~~The completion value of a block is like an implicit return of the last statement value in the block.~~~
+
+**Expression Side Effects**
+
+When `++` is used in the prefix position as `++a`, its side effect (incrementing `a`) happens _before_ the value is returned from the expression, rather than _after_ as with `a++`.
+
+
+
 
 
 
