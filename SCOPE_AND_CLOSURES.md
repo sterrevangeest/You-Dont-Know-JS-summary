@@ -143,8 +143,23 @@ You should expose only what is minimally necessary, and "hide" everything else.
 Problems with wrapping a function around a snippet of code. 
 - You have to declare a named function, which means that the identifier name itself pollutes the enclosing scope. 
 - You have to explicitly call the function by name so that the wrapped code actually executes. 
+
 --> More ideal if the function didn't need a name, or the name didn't pollute the enclosing scope. 
 
+```
+var a = 2;
+
+(function foo(){ // <-- insert this
+
+	var a = 3;
+	console.log( a ); // 3
+
+})(); // <-- and this
+
+console.log( a ); // 2
+```
+
+This may seem like a minor detail, it's actually a major change. Instead of treating the function as a standard declaration, the function is treated as a function-expression.
 
    
    
