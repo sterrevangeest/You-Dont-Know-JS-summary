@@ -98,6 +98,23 @@ Lexical scope is scope that is defined at lexing time. In other words, lexical s
 
 `window.a`  --> Global variables are also automatically properties of the global object (`window` in browsers, etc.), so it is possible to reference a global variable not directly by its lexical name, but instead indirectly as a property reference of the global object. This technique gives access to a global variable which would otherwise be inaccessible due to it being shadowed. However, non-global shadowed variables cannot be accessed.
 
+### Cheating Lexical
+
+If lexical scope is defined only by where a function is declared, which is entirely an author-time decision, how could there possibly be a way to "modify" (aka, cheat) lexical scope at run-time?
+
+JavaScript has two such mechanisms. Both of them are equally frowned-upon in the wider community as bad practices to use in your code. But the typical arguments against them are often missing the most important point: **cheating lexical scope leads to poorer performance**.
+
+You can cheat lexical-scope with: 
+- `eval`: takes a string as an argument, and treats the contents of the string as if it had actually been authored code at that point in the pogram. (you can programmatically generate code inside of your authored code, and run the generated code as if it had been there at author time)
+- `with`: short-hand for making multiple property references against an object without repeating the object reference itself each time. 
+
+While the `eval(..)` function can modify existing lexical scope if it takes a string of code with one or more declarations in it, the `with` statement actually creates a whole new lexical scope out of thin air, from the object you pass to it.
+
+If Engine finds an `eval` or `with` in the code, it has to assume that all its awareness of identifier location may be invalid, bc it cannot know at lexing time exactly what code you may pass to `eval` or `with`. Most of the optimizations it would make are pointless if `eval` or `with` are present, so it simply doesn't perform the optimizations at all. --> Your code will run slower. 
+
+SO DON'T USE `EVAL` AND `WITH`. 
+
+
 
 
 
