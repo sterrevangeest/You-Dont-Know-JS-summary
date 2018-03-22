@@ -135,7 +135,7 @@ Why would "hiding" variables and functions be a useful technique? (Variety of re
 - you should expose only what is minimally necessary, and "hide" everything else. 
   - It keeps private details private.
   - It avoids unintended collision between two different identifiers with the same name but different intended usages. 
-
+   
 
 
 
