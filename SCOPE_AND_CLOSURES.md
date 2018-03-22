@@ -132,10 +132,23 @@ The traditional way of thinking about functions is that you declare a function, 
 
 Why would "hiding" variables and functions be a useful technique? (Variety of reasons, arise from the software design principle "Principle of Least Privilege")
 
-- you should expose only what is minimally necessary, and "hide" everything else. 
-  - It keeps private details private.
-  - It avoids unintended collision between two different identifiers with the same name but different intended usages. 
-  * Global "Namespaces" 
+You should expose only what is minimally necessary, and "hide" everything else. 
+- It keeps private details private.
+- It avoids unintended collision between two different identifiers with the same name but different intended usages. 
+   * Global "Namespaces":  
+   * Module Management: using any of various dependency managers. No libraries ever add any identifiers tot the global    scope, but are instead required to have identifier(s) explicitly imported into another specific scope through usage of the dependency manager's various mechanisms.(????????) They simply use the rules of scoping as explained here to enforce that no identifiers are injected into any shared scope, and are instead kept in private, non-collision-susceptible scopes, which prevents any accidental scope collisions. 
+
+### Functions As Scopes 
+
+Problems with wrapping a function around a snippet of code. 
+- You have to declare a named function, which means that the identifier name itself pollutes the enclosing scope. 
+- You have to explicitly call the function by name so that the wrapped code actually executes. 
+--> More ideal if the function didn't need a name, or the name didn't pollute the enclosing scope. 
+
+
+   
+   
+   
 
 
 
