@@ -115,6 +115,36 @@ If Engine finds an `eval` or `with` in the code, it has to assume that all its a
 SO DON'T USE `EVAL` AND `WITH`. 
 
 
+## Chapter 3: Function vs. Block Scope
+
+_(Recap) Scope consists of a series of "bubbles" that each act as a container or bucket, in which identifiers (variables, functions) are declared. These bubbles nest neatly inside each other, and this nesting is defined at author-time._
+
+Can other structures in JavaScript create bubbles of scope?
+
+### Scope From Functions 
+Each function you declare creates a bubble for itself, but no other structures create their own scope bubbles. (Niet helemaal waar). 
+
+Function scope encourages the idea that all variables belong to the function, and can be used and reused throughout the entirety of the function (and indeed, accessible even to nested scopes).
+
+### Hiding In Plain Scope 
+
+The traditional way of thinking about functions is that you declare a function, and then add code inside it. But the inverse thinking is equally powerful and useful: take any arbitrary section of code you've written, and wrap a function declaration around it, which in effect "hides" the code.
+
+Why would "hiding" variables and functions be a useful technique? (Variety of reasons, arise from the software design principle "Principle of Least Privilege")
+
+- you should expose only what is minimally necessary, and "hide" everything else. 
+  - It keeps private details private.
+  - It avoids unintended collision between two different identifiers with the same name but different intended usages. 
+
+
+
+
+
+
+
+
+
+
 
 
 
