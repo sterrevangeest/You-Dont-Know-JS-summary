@@ -159,7 +159,16 @@ var a = 2;
 console.log( a ); // 2
 ```
 
-This may seem like a minor detail, it's actually a major change. Instead of treating the function as a standard declaration, the function is treated as a function-expression.
+This may seem like a minor detail, it's actually a major change. Instead of treating the function as a standard declaration, the function is treated as a **function-expression** (not a function declaration).
+
+`(function foo(){ .. })` as an expression means the identifier `foo` is found only in the scope where the `..` indicates, not in the outer scope. Hiding the name foo inside itself means it does not pollute the enclosing scope unnecessarily.
+
+
+### Invoking Function Expressions Immediately (IIFE) 
+
+
+
+
 
    
    
