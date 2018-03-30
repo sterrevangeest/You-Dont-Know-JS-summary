@@ -16,8 +16,6 @@ The JavaScript engine is vastly more complex than just those three steps, as are
 
 Let's just say, for simplicity's sake, that any snippet of JavaScript has to be compiled before (usually right before!) it's executed. So, the JS compiler will take the program `var a = 2;` and compile it first, and then be ready to execute it, usually right away
 
-
-
 ## Understanding Scope
 Think of terms of conversations:
 
@@ -164,6 +162,11 @@ This may seem like a minor detail, it's actually a major change. Instead of trea
 `(function foo(){ .. })` as an expression means the identifier `foo` is found only in the scope where the `..` indicates, not in the outer scope. Hiding the name foo inside itself means it does not pollute the enclosing scope unnecessarily.
 
 
+#### Differences between Declarations and Expressions
+
+
+
+
 ### Invoking Function Expressions Immediately (IIFE) 
 
 An IIFE is a function that runs as soon as it is defined. It contains two major parts: 
@@ -191,6 +194,49 @@ for (var i=0; i<10; i++) {
 }
 ```
 Why pollute the entire scope of a function with the i variable that is only going to be (or only should be, at least) used for the for-loop?
+
+Examle/form of block scope: 
+
+- `with` 
+- `try/catch` 
+- `let` another way to declare variables. Creates a block-scoped variable.
+The `let` keyword attaches the variable declaration to the scope of whaterver block it's contained in. Declarations made with let will not hoist to the entire scope of the block they appear in. Such declarations will not observably "exist" in the block until the declaration statement. 
+- `const` also creates a block-scoped variable, but whose value is fixed/constant. Changing the value will give errors.
+
+
+## Chapter 4: Hoisting
+
+There's a subtle detail of how scope attachment works with declarations that appear in various locations within a scope. 
+
+Recall that the Engine actually will compile your JavaScript code before it interprets it. Part of the compilation phase was to find and associate all declarations with their appropriate scopes.
+
+So, the best way to think about things is that **all declarations**, both variables and functions, are processed first, before any part of your code is executed.
+
+- JS sees `var a = 2;` as two assignments: `var a` and `a = 2`. 
+	- the **declaration** `var a` is processed during the **compilation** phase. 
+		```
+		var a; 
+		```
+		```
+		a =2;
+		console.log(a);
+		```
+	- the **assignment** `a = 2` is left in place for the **execution** phase. 
+
+So, one way of thinking, sort of metaphorically, about this process, is that variable and function declarations are "moved" from where they appear in the flow of the code to the top of the code. This gives rise to the name "Hoisting".
+
+Important to note: 
+- hoisting is per-scope. A variable will host to the top of a function. 
+- function declarations are hoisted, but function expressions are not. 
+- function declarations are hoisted first, then variable declarations/normal variables. 
+
+
+
+
+
+
+
+
 
 
 
