@@ -166,6 +166,33 @@ This may seem like a minor detail, it's actually a major change. Instead of trea
 
 ### Invoking Function Expressions Immediately (IIFE) 
 
+An IIFE is a function that runs as soon as it is defined. It contains two major parts: 
+
+1. The anonymous function with lexical scope enclosed within the grouping operator `()`. This prevents accessing variables within the IFFE idom as well as polluting the global scope. 
+
+2. The second part is creating the immediately executing function expression (), through which the JavaScript engine will directly interpret the function.
+
+**You don't need to name a function expression/IIFE, but:**
+
+1. Anonymous functions have no useful name to display in stack traces, which can make debugging more difficult.
+
+2. Without a name, if the function needs to refer to itself, for recursion, etc., the deprecated `arguments.callee` reference is unfortunately required. Another example of needing to self-reference is when an event handler function wants to unbind itself after it fires.
+
+3. Anonymous functions omit a name that is often helpful in providing more readable/understandable code. A descriptive name helps self-document the code in question.
+
+### Blocks As Scopes
+
+Block-scoping is all about declaring variables as close as possible, as local as possible, to where they will be used. 
+
+Like: 
+```
+for (var i=0; i<10; i++) {
+	console.log( i );
+}
+```
+Why pollute the entire scope of a function with the i variable that is only going to be (or only should be, at least) used for the for-loop?
+
+
 
 
 
