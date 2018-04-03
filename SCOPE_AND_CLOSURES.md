@@ -269,9 +269,19 @@ var baz = foo();
 baz(); // 2 -- Whoa, closure was just observed, man.
 ```
 
+`bar()` is executed. But in this case, it's executed outside of its declared lexical scope.
 
 
 
+After `foo()` executed, normally we would expect that the entirety of the inner scope of `foo()` would go away, because we know that the Engine employs a _Garbage Collector_ that comes along and frees up memory once it's no longer in use. Since it would appear that the contents of `foo()` are no longer in use, it would seem natural that they should be considered gone.
+
+But the "magic" of closures does not let this happen. That inner scope is in fact still "in use", and thus does not go away. Who's using it? The function `bar()` itself.
+
+By virtue of where it was declared, `bar()` has a **lexical scope closure** over that inner scope of `foo()`, which keeps that scope alive for `bar()` to reference at any later time.
+
+**`bar()` still has a reference to that scope, and that reference is called closure.**
+
+**Closure** lets the function continue to access the lexical scope it was defined in at author-time.
 
 
    
