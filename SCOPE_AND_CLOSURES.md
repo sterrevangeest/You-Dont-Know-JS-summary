@@ -231,6 +231,11 @@ Important to note:
 - function declarations are hoisted first, then variable declarations/normal variables. 
 
 
+## Chapter 5: Scope Closure
+
+Closure is all around you in JavaScript, you just have to recognize and embrace it. Closures happen as a result of writing code that relies on lexical scope. They just happen. 
+
+Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.
 
 
 
